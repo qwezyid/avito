@@ -41,11 +41,18 @@ class MessageAccumulator:
             
             messages = self.get_chat_unprocessed_messages(chat_id)
             
-            if messages:
-                history = self.get_chat_history(chat_id, limit=10)
-                context = self.build_context(messages, history)
-                self.send_to_ai_processing(chat_id, context)
-                self.mark_messages_queued(messages)
+            messages = [msg for msg in messages if msg.get('author_id') != 414329950]
+            
+            if not messages:
+                logger.info(f"No messages to process for chat {chat_id} (or only bot messages found)")
+                if chat_id in self.active_chats:
+                    del self.active_chats[chat_id]
+                return
+            
+            history = self.get_chat_history(chat_id, limit=10)
+            context = self.build_context(messages, history)
+            self.send_to_ai_processing(chat_id, context)
+            self.mark_messages_queued(messages)
             
             if chat_id in self.active_chats:
                 del self.active_chats[chat_id]
@@ -60,15 +67,22 @@ class MessageAccumulator:
                 cursor.execute("""
                     SELECT * FROM simple_messages 
                     WHERE chat_id = %s 
-                      AND direction = 'in' 
-                      AND ai_processed = FALSE
-                      AND content_text IS NOT NULL
-                      AND content_text != ''
+                    AND direction = 'in' 
+                    AND ai_processed = FALSE
+                    AND content_text IS NOT NULL
+                    AND content_text != ''
+                    AND author_id != 414329950
                     ORDER BY created ASC
                 """, (chat_id,))
                 messages = cursor.fetchall()
             conn.close()
-            return messages
+            
+            filtered_messages = [msg for msg in messages if msg.get('author_id') != 414329950]
+            
+            if len(messages) != len(filtered_messages):
+                logger.warning(f"Filtered out {len(messages) - len(filtered_messages)} bot messages that were missed by SQL")
+            
+            return filtered_messages
         except Exception as e:
             logger.error(f"Error getting unprocessed messages: {e}")
             return []

@@ -48,6 +48,10 @@ class WebhookHandler:
     def save_new_message(self, message_data):
         try:
             from .message_accumulator import message_accumulator
+
+            if message_data.get('author_id') == 414329950:
+                logger.info(f"Skipping our own message: {message_data['content']['text'][:30]}...")
+                return
             
             conn = psycopg2.connect(**self.db_config)
             with conn.cursor() as cursor:
@@ -61,17 +65,15 @@ class WebhookHandler:
                     message_data['chat_id'],
                     message_data.get('author_id', 0),
                     message_data.get('created', 0),
-                    'in',  # Входящее сообщение
+                    'in',  # �������� ���������
                     message_data['content']['text'],
                     False
                 ))
-                
-                # Проверяем что сообщение действительно добавилось
+
                 if cursor.rowcount > 0:
                     logger.info(f"New message saved: {message_data['content']['text'][:50]}...")
                     conn.commit()
-                    
-                    # Добавляем в накопитель
+
                     message_accumulator.add_message(message_data['chat_id'])
                 else:
                     logger.info("Message already exists")

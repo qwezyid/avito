@@ -1,20 +1,39 @@
 nohup: ignoring input
-[2025-08-08 04:41:22 +0300] [7325] [INFO] Starting gunicorn 23.0.0
-[2025-08-08 04:41:22 +0300] [7325] [INFO] Listening at: http://0.0.0.0:8080 (7325)
-[2025-08-08 04:41:22 +0300] [7325] [INFO] Using worker: sync
-[2025-08-08 04:41:22 +0300] [7326] [INFO] Booting worker with pid: 7326
-[2025-08-08 04:41:22 +0300] [7327] [INFO] Booting worker with pid: 7327
-INFO:webhook_server:Webhook received: {"id": "26da5263-eaa3-4d02-8479-320030a44a53", "version": "v3.0.0", "timestamp": 1754617290, "payload": {"type": "message", "value": {"id": "35604c220205e087355646846dcef9c3", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617290, "type": "text", "chat_type": "u2i", "content": {"text": "вот пишет мне"}, "item_id": 7547223538, "published_at": "2025-08-08T01:41:30Z"}}}
-INFO:webhook_server:Processing new message: вот пишет мне
-INFO:webhook_server:New message saved: вот пишет мне...
-INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
-INFO:webhook_server:Webhook received: {"id": "09b3bd20-3586-412f-b465-715563ef2433", "version": "v3.0.0", "timestamp": 1754617316, "payload": {"type": "message", "value": {"id": "17e6c5c3a1f5b0c5f125bc0b053257bc", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617316, "type": "text", "chat_type": "u2i", "content": {"text": "москва-питер"}, "item_id": 7547223538, "published_at": "2025-08-08T01:41:56Z"}}}
-INFO:webhook_server:Processing new message: москва-питер
-INFO:webhook_server:New message saved: москва-питер...
-INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
-INFO:webhook_server:Webhook received: {"id": "d22198f4-c411-4b9d-a1d4-54ca89a1f38f", "version": "v3.0.0", "timestamp": 1754617326, "payload": {"type": "message", "value": {"id": "6094c442ce569ae49c6a9c72fa40e6af", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617326, "type": "text", "chat_type": "u2i", "content": {"text": "камри 75"}, "item_id": 7547223538, "published_at": "2025-08-08T01:42:06Z"}}}
-INFO:webhook_server:Processing new message: камри 75
-INFO:webhook_server:New message saved: камри 75...
+[2025-08-08 05:32:19 +0300] [7846] [INFO] Starting gunicorn 23.0.0
+[2025-08-08 05:32:19 +0300] [7846] [INFO] Listening at: http://0.0.0.0:8080 (7846)
+[2025-08-08 05:32:19 +0300] [7846] [INFO] Using worker: sync
+[2025-08-08 05:32:19 +0300] [7847] [INFO] Booting worker with pid: 7847
+[2025-08-08 05:32:19 +0300] [7848] [INFO] Booting worker with pid: 7848
+INFO:webhook_server:Webhook received: {"id": "693fc287-98f6-41e8-a56f-a50dcd8fd650", "version": "v3.0.0", "timestamp": 1754620355, "payload": {"type": "message", "value": {"id": "b216cdb00a82c69ae07ebeb81c09b9dc", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754620355, "type": "text", "chat_type": "u2i", "content": {"text": "из мск в питер отвезем по итогу?"}, "item_id": 7547223538, "published_at": "2025-08-08T02:32:35Z"}}}
+INFO:webhook_server:Processing new message: из мск в питер отвезем по итогу?
+INFO:webhook_server:New message saved: из мск в питер отвезем по итогу?...
 INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
 INFO:message_accumulator:Processing accumulated messages for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
-ERROR:message_accumulator:Error processing accumulated messages: '{' was never closed (ai_decision_engine.py, line 139)
+INFO:ai_decision_engine:Sending request to OpenRouter, model: nousresearch/nous-hermes-2-mixtral-8x7b-dpo
+INFO:ai_decision_engine:OpenRouter response received successfully
+INFO:message_accumulator:AI decision for u2i-LhtkfD8bBQQEDr4rZgMZLw: {'response': 'Маршрут: Москва - Санкт-Петербург, нужно уточнить тип груза, вес/объем.', 'needs_price_calculation': True, 'has_all_info': False}
+INFO:message_accumulator:Response sent: Маршрут: Москва - Санкт-Петербург, нужно уточнить тип груза, вес/объем.
+INFO:message_accumulator:Sending to price calculator for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:webhook_server:Webhook received: {"id": "b77a4ff1-6a95-46ec-b9ce-484da081eb2e", "version": "v3.0.0", "timestamp": 1754620392, "payload": {"type": "message", "value": {"id": "446352621ae123597b5e01d414e08ff9", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 414329950, "created": 1754620389, "type": "text", "chat_type": "u2i", "content": {"text": "Маршрут: Москва - Санкт-Петербург, нужно уточнить тип груза, вес/объем."}, "item_id": 7547223538, "published_at": "2025-08-08T02:33:09Z"}}}
+INFO:webhook_server:Processing new message: Маршрут: Москва - Санкт-Петербург, нужно уточнить тип груза, вес/объем.
+INFO:webhook_server:Skipping our own message: Маршрут: Москва - Санкт-Петерб...
+INFO:webhook_server:Webhook received: {"id": "3e97d550-c109-4d0f-9190-7c2a9e413a2c", "version": "v3.0.0", "timestamp": 1754620427, "payload": {"type": "message", "value": {"id": "2d422899c1051aa32449791a464b98a2", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754620427, "type": "text", "chat_type": "u2i", "content": {"text": "везем машину, 3500кг, примерно 3ккбометра"}, "item_id": 7547223538, "published_at": "2025-08-08T02:33:47Z"}}}
+INFO:webhook_server:Processing new message: везем машину, 3500кг, примерно 3ккбометра
+INFO:webhook_server:New message saved: везем машину, 3500кг, примерно 3ккбометра...
+INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:message_accumulator:Processing accumulated messages for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:ai_decision_engine:Sending request to OpenRouter, model: nousresearch/nous-hermes-2-mixtral-8x7b-dpo
+INFO:ai_decision_engine:OpenRouter response received successfully
+ERROR:ai_decision_engine:JSON parsing error: Extra data: line 7 column 1 (char 199), raw text: {
+    "response": "Приветство приветствуется, но для эффективной работы перейдем к бизнес-контактам....
+INFO:message_accumulator:AI decision for u2i-LhtkfD8bBQQEDr4rZgMZLw: {'response': 'Привет! Откуда и куда нужна перевозка?', 'needs_price_calculation': False, 'has_all_info': False}
+INFO:message_accumulator:Response sent: Привет! Откуда и куда нужна перевозка?
+INFO:webhook_server:Webhook received: {"id": "d91bede9-a7c6-4aee-8ff1-7bed2f238d08", "version": "v3.0.0", "timestamp": 1754620461, "payload": {"type": "message", "value": {"id": "3e04ad92a600b5b03acb2eb7fd6166ae", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 414329950, "created": 1754620461, "type": "text", "chat_type": "u2i", "content": {"text": "Привет! Откуда и куда нужна перевозка?"}, "item_id": 7547223538, "published_at": "2025-08-08T02:34:21Z"}}}
+INFO:webhook_server:Processing new message: Привет! Откуда и куда нужна перевозка?
+INFO:webhook_server:Skipping our own message: Привет! Откуда и куда нужна пе...
+[2025-08-08 05:34:40 +0300] [7846] [INFO] Handling signal: term
+[2025-08-08 05:34:40 +0300] [7848] [INFO] Worker exiting (pid: 7848)
+[2025-08-08 05:34:40 +0300] [7847] [INFO] Worker exiting (pid: 7847)
+[2025-08-08 05:34:40 +0300] [7846] [ERROR] Worker (pid:7847) was sent SIGTERM!
+[2025-08-08 05:34:40 +0300] [7846] [ERROR] Worker (pid:7848) was sent SIGTERM!
+[2025-08-08 05:34:40 +0300] [7846] [INFO] Shutting down: Master
