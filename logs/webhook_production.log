@@ -1,0 +1,20 @@
+nohup: ignoring input
+[2025-08-08 04:41:22 +0300] [7325] [INFO] Starting gunicorn 23.0.0
+[2025-08-08 04:41:22 +0300] [7325] [INFO] Listening at: http://0.0.0.0:8080 (7325)
+[2025-08-08 04:41:22 +0300] [7325] [INFO] Using worker: sync
+[2025-08-08 04:41:22 +0300] [7326] [INFO] Booting worker with pid: 7326
+[2025-08-08 04:41:22 +0300] [7327] [INFO] Booting worker with pid: 7327
+INFO:webhook_server:Webhook received: {"id": "26da5263-eaa3-4d02-8479-320030a44a53", "version": "v3.0.0", "timestamp": 1754617290, "payload": {"type": "message", "value": {"id": "35604c220205e087355646846dcef9c3", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617290, "type": "text", "chat_type": "u2i", "content": {"text": "вот пишет мне"}, "item_id": 7547223538, "published_at": "2025-08-08T01:41:30Z"}}}
+INFO:webhook_server:Processing new message: вот пишет мне
+INFO:webhook_server:New message saved: вот пишет мне...
+INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:webhook_server:Webhook received: {"id": "09b3bd20-3586-412f-b465-715563ef2433", "version": "v3.0.0", "timestamp": 1754617316, "payload": {"type": "message", "value": {"id": "17e6c5c3a1f5b0c5f125bc0b053257bc", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617316, "type": "text", "chat_type": "u2i", "content": {"text": "москва-питер"}, "item_id": 7547223538, "published_at": "2025-08-08T01:41:56Z"}}}
+INFO:webhook_server:Processing new message: москва-питер
+INFO:webhook_server:New message saved: москва-питер...
+INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:webhook_server:Webhook received: {"id": "d22198f4-c411-4b9d-a1d4-54ca89a1f38f", "version": "v3.0.0", "timestamp": 1754617326, "payload": {"type": "message", "value": {"id": "6094c442ce569ae49c6a9c72fa40e6af", "chat_id": "u2i-LhtkfD8bBQQEDr4rZgMZLw", "user_id": 414329950, "author_id": 397771869, "created": 1754617326, "type": "text", "chat_type": "u2i", "content": {"text": "камри 75"}, "item_id": 7547223538, "published_at": "2025-08-08T01:42:06Z"}}}
+INFO:webhook_server:Processing new message: камри 75
+INFO:webhook_server:New message saved: камри 75...
+INFO:message_accumulator:Message accumulation started for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+INFO:message_accumulator:Processing accumulated messages for chat u2i-LhtkfD8bBQQEDr4rZgMZLw
+ERROR:message_accumulator:Error processing accumulated messages: '{' was never closed (ai_decision_engine.py, line 139)

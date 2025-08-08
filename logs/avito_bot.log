@@ -1,0 +1,4 @@
+2025-08-08 02:02:31,589 - redis_manager - INFO - Тестовое сообщение Redis
+2025-08-08 02:02:31,590 - rabbitmq_manager - INFO - Тестовое сообщение RabbitMQ
+2025-08-08 02:02:31,590 - database_manager - WARNING - Тестовое предупреждение БД
+2025-08-08 02:02:31,590 - ai_processor - ERROR - Тестовая ошибка ИИ

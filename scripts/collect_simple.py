@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import psycopg2
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src.services.avito_client import avito_client
+
+class SimpleCollector:
+    def __init__(self, user_id: int):
+        self.user_id = user_id
+        self.db_config = {
+            'host': "89.169.45.152",
+            'database': "Avito",
+            'user': "Tim",
+            'password': "AVITOPassw0rd"
+        }
+        
+    def collect(self):
+        chats = avito_client.get_chats(self.user_id, limit=5)
+        if not chats:
+            print("No chats found")
+            return
+        
+        new_messages = 0
+        
+        for chat in chats:
+            chat_id = chat['id']
+            print(f"\nChat: {chat_id}")
+            
+            self.save_chat(chat)
+            
+            messages = avito_client.get_messages(self.user_id, chat_id, limit=5)
+            if messages:
+                for message in messages:
+                    if self.save_message(chat_id, message):
+                        new_messages += 1
+                        direction = "➡️" if message['direction'] == 'out' else "⬅️"
+                        text = message.get('content', {}).get('text', '')[:30]
+                        print(f"  {direction} {text}...")
+        
+        print(f"\n✅ New messages: {new_messages}")
+    
+    def save_chat(self, chat):
+        try:
+            conn = psycopg2.connect(**self.db_config)
+            with conn.cursor() as cursor:
+                cursor.execute("""
+                    INSERT INTO simple_chats (chat_id, created, updated)
+                    VALUES (%s, %s, %s)
+                    ON CONFLICT (chat_id) DO UPDATE SET updated = EXCLUDED.updated
+                """, (chat['id'], chat['created'], chat['updated']))
+                conn.commit()
+            conn.close()
+        except Exception as e:
+            print(f"Chat save error: {e}")
+    
+    def save_message(self, chat_id, message):
+        try:
+            conn = psycopg2.connect(**self.db_config)
+            with conn.cursor() as cursor:
+                cursor.execute("SELECT 1 FROM simple_messages WHERE message_id = %s", (message['id'],))
+                if cursor.fetchone():
+                    conn.close()
+                    return False
+                
+                cursor.execute("""
+                    INSERT INTO simple_messages 
+                    (message_id, chat_id, author_id, created, direction, message_type, content_text)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    message['id'],
+                    chat_id,
+                    message.get('author_id', 0),
+                    message['created'],
+                    message['direction'],
+                    message.get('type', 'text'),
+                    message.get('content', {}).get('text', '')
+                ))
+                
+                conn.commit()
+            conn.close()
+            return True
+        except Exception as e:
+            print(f"Message save error: {e}")
+            return False
+
+if __name__ == "__main__":
+    collector = SimpleCollector(user_id=414329950)
+    collector.collect()
